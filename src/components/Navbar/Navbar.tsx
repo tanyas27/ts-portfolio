@@ -30,7 +30,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const audio = new Audio("/birds.mp3");
+    const audio = new Audio(`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/birds.mp3`);
     audio.loop = true;
     audio.volume = 0.4;
     audioRef.current = audio;
@@ -90,7 +90,7 @@ export default function Navbar() {
 
         {/* Right side: Resume + Audio toggle */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="/resume.pdf" className="flex items-center gap-2 px-5 py-2 text-sm font-semibold accent-pill rounded-full transition-all hover:shadow-lg hover:shadow-[var(--accent)]/20">
+          <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`} className="flex items-center gap-2 px-5 py-2 text-sm font-semibold accent-pill rounded-full transition-all hover:shadow-lg hover:shadow-[var(--accent)]/20">
             Resume
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
@@ -166,7 +166,7 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a href="/resume.pdf" className="mt-2 px-4 py-3 text-sm font-semibold accent-pill rounded-lg text-center">Resume</a>
+              <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`} className="mt-2 px-4 py-3 text-sm font-semibold accent-pill rounded-lg text-center">Resume</a>
               <button
                 onClick={toggleTheme}
                 className="mt-2 px-4 py-3 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--surface)] rounded-lg transition-colors flex items-center gap-3"

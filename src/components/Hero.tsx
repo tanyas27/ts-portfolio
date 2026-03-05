@@ -12,7 +12,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background landscape image */}
       <Image
-        src={theme === "light" ? "/hero-landscape-light.jpg" : "/hero-landscape.jpg"}
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${theme === "light" ? "/hero-landscape-light.jpg" : "/hero-landscape.jpg"}`}
         alt="Mountain landscape"
         fill
         priority
