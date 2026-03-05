@@ -1,27 +1,39 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolio";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background landscape image */}
+      <Image
+        src="/hero-landscape.jpg"
+        alt="Mountain landscape"
+        fill
+        priority
+        className="object-cover"
+        quality={90}
+      />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Status badge */}
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 hero-overlay" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark-glass-pill mb-8"
         >
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="text-sm text-[var(--text-muted)]">
+          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+          <span className="text-sm text-white/80">
             Available for opportunities
           </span>
         </motion.div>
 
-        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,10 +41,11 @@ export default function Hero() {
           className="text-5xl sm:text-7xl font-bold tracking-tight mb-4"
         >
           {personalInfo.name.split(" ")[0]}{" "}
-          <span className="text-gradient">{personalInfo.name.split(" ")[1]}</span>
+          <span className="text-gradient">
+            {personalInfo.name.split(" ")[1]}
+          </span>
         </motion.h1>
 
-        {/* Title with typing effect */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,11 +55,12 @@ export default function Hero() {
           <span className="text-[var(--accent)]">const</span>{" "}
           <span className="text-[var(--foreground)]">role</span>{" "}
           <span className="text-[var(--accent)]">=</span>{" "}
-          <span className="text-emerald-400">&quot;{personalInfo.title}&quot;</span>
+          <span className="text-emerald-400">
+            &quot;{personalInfo.title}&quot;
+          </span>
           <span className="animate-blink text-[var(--accent)]">|</span>
         </motion.div>
 
-        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +70,6 @@ export default function Hero() {
           {personalInfo.tagline}
         </motion.p>
 
-        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,22 +78,21 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="group px-8 py-3.5 bg-[var(--accent)] text-white rounded-xl font-medium text-sm hover:bg-[var(--accent-light)] transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)]"
+            className="group inline-flex items-center gap-2 px-7 py-3 accent-pill rounded-full text-sm transition-all hover:shadow-lg hover:shadow-[var(--accent)]/20"
           >
             View My Work
-            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
+            <span className="inline-block transition-transform group-hover:translate-x-1">
               &rarr;
             </span>
           </a>
           <a
             href="#contact"
-            className="px-8 py-3.5 border border-white/10 text-[var(--foreground)] rounded-xl font-medium text-sm hover:bg-white/5 hover:border-white/20 transition-all"
+            className="inline-flex items-center gap-2 px-7 py-3 dark-glass-pill rounded-full text-sm text-[var(--foreground)] transition-all"
           >
             Get In Touch
           </a>
         </motion.div>
 
-        {/* Tech stack pills */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -91,11 +103,11 @@ export default function Hero() {
             (tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs font-mono text-[var(--text-muted)] border border-white/5 rounded-md bg-white/[0.02]"
+                className="px-3 py-1 text-xs font-mono text-[var(--text-muted)] dark-glass-pill rounded-md"
               >
                 {tech}
               </span>
-            )
+            ),
           )}
         </motion.div>
       </div>
@@ -105,7 +117,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

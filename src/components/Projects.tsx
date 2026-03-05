@@ -5,20 +5,8 @@ import { projects } from "@/data/portfolio";
 
 function ArrowIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      className="transition-transform group-hover:translate-x-1"
-    >
-      <path
-        d="M3 8h10m0 0L9 4m4 4L9 12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1">
+      <path d="M7 17L17 7M17 7H7M17 7v10" />
     </svg>
   );
 }
@@ -48,21 +36,11 @@ export default function Projects() {
   return (
     <section id="projects" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="font-mono text-sm text-[var(--accent)] mb-2">
-            {"// projects"}
-          </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold mb-12">
-            Featured <span className="text-gradient">work</span>
-          </h3>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
+          <h2 className="font-mono text-sm text-[var(--accent)] mb-2">{"// projects"}</h2>
+          <h3 className="text-3xl sm:text-4xl font-bold mb-12">Featured <span className="text-gradient">work</span></h3>
         </motion.div>
 
-        {/* Featured projects */}
         <div className="grid gap-6 mb-12">
           {featured.map((project, i) => (
             <motion.div
@@ -71,64 +49,32 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group glow-border p-8 rounded-2xl bg-[var(--surface)] border border-white/5 transition-all duration-300 hover:-translate-y-1"
+              className="group dark-glass p-8 rounded-2xl overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-mono text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded">
-                      Featured
-                    </span>
+                    <span className="text-xs font-mono text-[#080a08] bg-[var(--accent)] px-2.5 py-0.5 rounded-full font-semibold">Featured</span>
                   </div>
-                  <h4 className="text-xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--accent-light)] transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 max-w-xl">
-                    {project.description}
-                  </p>
+                  <h4 className="text-xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--accent)] transition-colors">{project.title}</h4>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 max-w-xl">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 text-xs font-mono text-[var(--accent-light)] bg-[var(--accent)]/10 rounded-md border border-[var(--accent)]/10"
-                      >
-                        {t}
-                      </span>
+                      <span key={t} className="px-2.5 py-1 text-xs font-mono text-[var(--accent)] bg-[var(--accent)]/5 rounded-md border border-[var(--accent)]/10">{t}</span>
                     ))}
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
-                  <a
-                    href={project.github}
-                    className="p-2 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
-                    aria-label="View source code"
-                  >
-                    <GitHubIcon />
-                  </a>
-                  <a
-                    href={project.link}
-                    className="p-2 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
-                    aria-label="View live project"
-                  >
-                    <ExternalIcon />
-                  </a>
+                  <a href={project.github} className="p-2 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors" aria-label="View source code"><GitHubIcon /></a>
+                  <a href={project.link} className="p-2 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors" aria-label="View live project"><ExternalIcon /></a>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Other projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h4 className="font-mono text-sm text-[var(--text-muted)] mb-6">
-            Other noteworthy projects
-          </h4>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5 }}>
+          <h4 className="font-mono text-sm text-[var(--text-muted)] mb-6">Other noteworthy projects</h4>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -140,32 +86,17 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="group glow-border p-6 rounded-2xl bg-[var(--surface)] border border-white/5 transition-all duration-300 hover:-translate-y-1 block"
+              className="group dark-glass p-6 rounded-2xl block overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="relative z-10 flex items-center justify-between mb-3">
                 <span className="text-2xl">📁</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors">
-                    <GitHubIcon />
-                  </span>
-                  <ArrowIcon />
-                </div>
+                <div className="flex items-center gap-2 text-[var(--text-muted)]"><GitHubIcon /><ArrowIcon /></div>
               </div>
-              <h5 className="font-semibold text-[var(--foreground)] mb-2 group-hover:text-[var(--accent-light)] transition-colors">
-                {project.title}
-              </h5>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
+              <h5 className="relative z-10 font-semibold text-[var(--foreground)] mb-2 group-hover:text-[var(--accent)] transition-colors">{project.title}</h5>
+              <p className="relative z-10 text-xs text-[var(--text-muted)] leading-relaxed mb-4">{project.description}</p>
+              <div className="relative z-10 flex flex-wrap gap-1.5">
                 {project.tech.slice(0, 3).map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs font-mono text-[var(--text-muted)]"
-                  >
-                    {t}
-                    {project.tech.indexOf(t) < 2 && " ·"}
-                  </span>
+                  <span key={t} className="text-xs font-mono text-[var(--text-muted)]">{t}{project.tech.indexOf(t) < 2 && " ·"}</span>
                 ))}
               </div>
             </motion.a>
