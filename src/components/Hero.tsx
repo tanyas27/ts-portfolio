@@ -3,17 +3,20 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolio";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function Hero() {
+  const { theme } = useTheme();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background landscape image */}
       <Image
-        src="/hero-landscape.jpg"
+        src={theme === "light" ? "/hero-landscape-light.jpg" : "/hero-landscape.jpg"}
         alt="Mountain landscape"
         fill
         priority
-        className="object-cover"
+        className="object-cover transition-opacity duration-500"
         quality={90}
       />
 
@@ -29,7 +32,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark-glass-pill mb-8"
         >
           <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-          <span className="text-sm text-white/80">
+          <span className="text-sm text-[var(--text-muted)]">
             Available for opportunities
           </span>
         </motion.div>
@@ -122,7 +125,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-5 h-8 border border-white/20 rounded-full flex items-start justify-center p-1"
+          className="w-5 h-8 border border-[var(--border)] rounded-full flex items-start justify-center p-1"
         >
           <div className="w-1 h-2 bg-[var(--accent)] rounded-full" />
         </motion.div>

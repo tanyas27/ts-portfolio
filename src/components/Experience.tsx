@@ -13,7 +13,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)]/30 via-white/5 to-transparent" />
+          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)]/30 via-[var(--border)] to-transparent" />
 
           <div className="space-y-12">
             {experience.map((job, i) => (

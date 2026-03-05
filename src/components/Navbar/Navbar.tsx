@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/data/portfolio";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +60,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-mono text-lg font-bold tracking-tight hover:text-[var(--accent)] transition-colors text-[var(--foreground)]">
+        <a href="#" className="font-mono text-2xl font-bold tracking-tight hover:text-[var(--accent)] transition-colors text-[var(--foreground)]">
           <span className="text-[var(--accent)]">&lt;</span>TS<span className="text-[var(--accent)]"> /&gt;</span>
         </a>
 
@@ -70,8 +72,8 @@ export default function Navbar() {
               href={link.href}
               className={`relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full ${
                 activeSection === link.href.replace("#", "")
-                  ? "text-[#080a08]"
-                  : "text-white/70 hover:text-white"
+                  ? "text-[var(--background)]"
+                  : "text-[var(--text-muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {activeSection === link.href.replace("#", "") && (
@@ -97,11 +99,38 @@ export default function Navbar() {
             </svg>
           </a>
           <button
+            onClick={toggleTheme}
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+              theme === "light"
+                ? "bg-[var(--accent)]/15 border border-[var(--accent)]/30 text-[var(--accent)]"
+                : "dark-glass-pill text-[var(--text-muted)] hover:text-[var(--foreground)]"
+            }`}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+              </svg>
+            )}
+          </button>
+          <button
             onClick={toggleAudio}
             className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
               playing
                 ? "bg-[var(--accent)]/15 border border-[var(--accent)]/30 text-[var(--accent)]"
-                : "dark-glass-pill text-white/50 hover:text-white/80"
+                : "dark-glass-pill text-[var(--text-muted)] hover:text-[var(--foreground)]"
             }`}
             aria-label={playing ? "Mute ambient sounds" : "Play ambient sounds"}
           >
@@ -133,11 +162,39 @@ export default function Navbar() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden dark-glass-nav overflow-hidden">
             <div className="px-6 py-4 flex flex-col gap-2">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">
+                <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="px-4 py-3 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--surface)] rounded-lg transition-colors">
                   {link.label}
                 </a>
               ))}
               <a href="/resume.pdf" className="mt-2 px-4 py-3 text-sm font-semibold accent-pill rounded-lg text-center">Resume</a>
+              <button
+                onClick={toggleTheme}
+                className="mt-2 px-4 py-3 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--surface)] rounded-lg transition-colors flex items-center gap-3"
+              >
+                {theme === "dark" ? (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="5" />
+                      <line x1="12" y1="1" x2="12" y2="3" />
+                      <line x1="12" y1="21" x2="12" y2="23" />
+                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                      <line x1="1" y1="12" x2="3" y2="12" />
+                      <line x1="21" y1="12" x2="23" y2="12" />
+                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    Light Mode
+                  </>
+                ) : (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    Dark Mode
+                  </>
+                )}
+              </button>
             </div>
           </motion.div>
         )}

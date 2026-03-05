@@ -2,17 +2,17 @@ export const personalInfo = {
   name: "Tanya Singh",
   title: "Lead Frontend Developer",
   tagline: "Building the future at the intersection of Code & AI",
-  email: "tanya@example.com",
-  location: "San Francisco, CA",
+  email: "tanyacs27@gmail.com",
+  location: "India",
   bio: `I'm a Lead Frontend Developer with 7+ years of experience crafting
 high-performance web applications. I specialize in React ecosystems,
 modern TypeScript architectures, and integrating AI capabilities into
 user-facing products. I lead teams that ship fast, iterate often, and
 obsess over developer experience.`,
   socials: {
-    github: "https://github.com/tanyasingh",
-    linkedin: "https://linkedin.com/in/tanyasingh",
-    twitter: "https://twitter.com/tanyasingh",
+    github: "https://github.com/tanyas27",
+    linkedin: "https://linkedin.com/in/tanyas27",
+    medium: "https://tanyas27.medium.com/",
   },
 };
 

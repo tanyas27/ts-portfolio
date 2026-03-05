@@ -54,7 +54,7 @@ export default function Projects() {
               <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-mono text-[#080a08] bg-[var(--accent)] px-2.5 py-0.5 rounded-full font-semibold">Featured</span>
+                    <span className="text-xs font-mono text-[var(--background)] bg-[var(--accent)] px-2.5 py-0.5 rounded-full font-semibold">Featured</span>
                   </div>
                   <h4 className="text-xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--accent)] transition-colors">{project.title}</h4>
                   <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 max-w-xl">{project.description}</p>
