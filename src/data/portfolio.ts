@@ -58,7 +58,7 @@ export const skills = [
 export const experience = [
   {
     role: "Lead Frontend Developer",
-    company: "NeuralScale AI",
+    company: "Princess Auto",
     period: "2022 — Present",
     description:
       "Leading a team of 8 frontend engineers building AI-powered analytics dashboards. Architected a real-time data visualization platform serving 50K+ daily users. Reduced bundle size by 40% and improved LCP by 2.1s.",
